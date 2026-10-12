@@ -7,15 +7,15 @@ function SnackList() {
   ];
 
   return (
-    <>
-      <ol>
-        {snackList
-          .toSorted((a, b) => a.rank - b.rank)
-          .map((snack) => (
-            <li key={snack.rank}>{snack.name}</li>
-          ))}
-      </ol>
-    </>
+    <ul>
+      {snackList
+        .toSorted((a, b) => a.rank - b.rank)
+        .map((snack) => (
+          <li key={snack.rank}>
+            {snack.name} - Ranked number {snack.rank} out of 4.
+          </li>
+        ))}
+    </ul>
   );
 }
 
