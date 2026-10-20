@@ -11,12 +11,13 @@
 
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
+import { useState } from 'react';
 
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState('Hello, ' + name);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hi, ' + name + '!');
   }
 
   return (
@@ -28,4 +29,7 @@ export default function BugProps({ name = 'friend' }) {
 }
 
 // Explanation:
-// (Write your explanation here)
+// Updated the component to use the useState hook to manage the message state.
+// React does not track regular variables for UI updates because regular variables cannot persist data across renders.
+// This is why the previous implementation was not updating the UI message.
+// Using useState, ensures that React is aware of the state changes and can re-render the component accordingly when the message is updated.
