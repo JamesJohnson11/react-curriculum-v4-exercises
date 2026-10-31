@@ -6,7 +6,8 @@ export default function BugEventPropagation() {
     alert("RED BOX CLICKED ❌ Don't show me!");
   }
 
-  function handleInnerClick() {
+  function handleInnerClick(event) {
+    event.stopPropagation();
     alert('Button Clicked ✅');
   }
 
@@ -22,3 +23,9 @@ export default function BugEventPropagation() {
     </>
   );
 }
+
+// Explanation:
+// In React, the default behavior of events is that they bubble up through the DOM tree.
+// This means that when an event is triggered on a child element, it will also trigger any event handlers on its parent elements.
+// The original implementation doesn't account for this, so when the inner click event is triggered, it also triggers the outer click event, resulting in both alerts being shown.
+// As a fix, I added the stopPropagation() method in the inner click handler. which stops the event from bubbling up to parent elements.
