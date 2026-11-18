@@ -25,11 +25,15 @@ const POSTS_ENDPOINT = 'https://jsonplaceholder.typicode.com/posts/';
 export function getPosts() {
   console.log('[getPosts]: fetching list of posts');
 
-  // TODO: use this `url` const to fetch the list of posts
-  // and return some JSON data.
-  // You may delete this comment once you've finished the implementation.
-  // eslint-disable-next-line no-unused-vars
-  const url = POSTS_ENDPOINT;
+  const postLimit = '?_limit=10';
+  const url = `${POSTS_ENDPOINT}${postLimit}`;
+
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error('Error fetching posts: ' + response.body);
+    }
+    return response.json();
+  });
 }
 
 /**
@@ -46,9 +50,12 @@ export function getSinglePost(postId) {
 
   console.log('[getSinglePost]: fetching post with id:', postId);
 
-  // TODO: use this `url` const to fetch the single post
-  // and return some JSON data.
-  // You may delete this comment once you've finished the implementation.
-  // eslint-disable-next-line no-unused-vars
   const url = `${POSTS_ENDPOINT}${postId}`;
+
+  return fetch(url).then((response) => {
+    if (!response.ok) {
+      throw new Error('Error fetching posts: ' + response.body);
+    }
+    return response.json();
+  });
 }
